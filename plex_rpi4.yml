@@ -50,3 +50,9 @@
       state: present
       update_cache: true
       install_recommends: yes
+
+  - name: Enable SSH
+    service:
+      name: ssh
+      enabled: yes
+      state: started
