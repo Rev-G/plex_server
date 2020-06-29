@@ -1,0 +1,61 @@
+- name: Plex Raspberry Pi
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  become: true
+  
+  tasks:
+  - name: Update Cache
+    apt:
+      update_cache: yes
+
+  - name: Upgrade all packages to the latest version
+    apt:
+      upgrade: dist
+      
+  - name: Remove useless packages from the cache
+    apt:
+      autoclean: yes
+
+  - name: Remove dependencies that are no longer required
+    apt:
+      autoremove: yes
+
+  - name: Install http transport for apt
+    apt:
+      name: apt-transport-https
+      state: present
+      update_cache: true
+ 
+  - name: Add Plex Key
+    apt_key:
+      url: https://downloads.plex.tv/plex-keys/PlexSign.key
+      state: present
+
+  - name: Add Plex repo
+    apt_repository:
+      repo: deb https://downloads.plex.tv/repo/deb public main
+      state: present
+      filename: plexmediaserver
+
+  - name: Update Cache
+    apt:
+      update-cache: yes
+
+  - name: Install http transport for apt
+    apt:
+      name: plexmediaserver
+      state: present
+      update_cache: true
+
+####static ip, instead of doing this on the pie, maybe set with the mac on the router instead?
+###add lines to file /etc/dhcpcd.conf
+#interface eth0
+
+#static ip_address=192.168.4.2/24
+#static routers=192.168.4.1
+#static domain_name_servers=192.168.4.1
+
+####enable ssh
+#systemctl enable ssh
+#systemctl start ssh
