@@ -19,12 +19,6 @@ static routers=192.168.4.1
 static domain_name_servers=192.168.4.1
 ```
 
-##enable ssh
-```
-systemctl enable ssh
-systemctl start ssh
-```
-
 https://github.com/Rev-G/plex_server.git
 
 ansible-playbook plex_rpi4.xml --ask-become-pass
