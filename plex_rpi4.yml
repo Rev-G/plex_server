@@ -12,7 +12,8 @@
   - name: Upgrade all packages to the latest version
     apt:
       upgrade: dist
-      
+      install_recommends: yes
+
   - name: Remove useless packages from the cache
     apt:
       autoclean: yes
@@ -26,6 +27,7 @@
       name: apt-transport-https
       state: present
       update_cache: true
+      install_recommends: yes
  
   - name: Add Plex Key
     apt_key:
@@ -47,15 +49,4 @@
       name: plexmediaserver
       state: present
       update_cache: true
-
-####static ip, instead of doing this on the pie, maybe set with the mac on the router instead?
-###add lines to file /etc/dhcpcd.conf
-#interface eth0
-
-#static ip_address=192.168.4.2/24
-#static routers=192.168.4.1
-#static domain_name_servers=192.168.4.1
-
-####enable ssh
-#systemctl enable ssh
-#systemctl start ssh
+      install_recommends: yes
