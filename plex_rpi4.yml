@@ -28,6 +28,20 @@
       state: present
       update_cache: true
       install_recommends: yes
+
+  - name: Install exFat fuse support
+    apt:
+      name: exfat-fuse
+      state: present
+      update_cache: true
+      install_recommends: yes
+
+  - name: Install exFat utils
+    apt:
+      name: exfat-utils
+      state: present
+      update_cache: true
+      install_recommends: yes
  
   - name: Add Plex Key
     apt_key:
