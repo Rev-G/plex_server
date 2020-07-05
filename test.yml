@@ -1,0 +1,7 @@
+- name: Plex Raspberry Pi
+  hosts: plex
+  become: true
+
+  tasks:
+  - debug:
+      msg: Running on {{ ansible_hostname }}

@@ -1,7 +1,5 @@
 - name: Plex Raspberry Pi
-  hosts: localhost
-  connection: local
-  gather_facts: no
+  hosts: plex
   become: true
   
   tasks:
@@ -58,15 +56,9 @@
     apt:
       update-cache: yes
 
-  - name: Install http transport for apt
+  - name: Install Plex Media Server
     apt:
       name: plexmediaserver
       state: present
       update_cache: true
       install_recommends: yes
-
-  - name: Enable SSH
-    service:
-      name: ssh
-      enabled: yes
-      state: started
