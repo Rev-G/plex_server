@@ -62,3 +62,12 @@
       state: present
       update_cache: true
       install_recommends: yes
+
+##need to add a dir /media/mediaplus for the external exfat drive
+##use lsusb and lsblk to find out where the drive is being seen
+##mount it with
+#sudo mount -t exfat /dev/sda2 /media/mediaplus
+##verify the mount
+#df -h 
+##
+#sudo unmount /dev/sda2
