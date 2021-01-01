@@ -64,7 +64,7 @@
       install_recommends: yes
       
   - name: Create media mount directory
-    file:
+    ansible.builtin.file:
       path: /media/mediaplus
       state: directory
       
