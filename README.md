@@ -25,4 +25,8 @@ https://pimylifeup.com/raspberry-pi-plex-server/
 
 https://github.com/Rev-G/plex_server.git
 
-ansible-playbook plex_rpi4.xml --ask-become-pass
+`ansible-playbook plex_rpi4.xml --ask-become-pass`
+
+if using password and disabling host key checking
+
+`ansible-playbook -i hosts plex_rpi4.xml -u <your_user_name> --ask-pass`
