@@ -4,64 +4,77 @@
   
   tasks:
   - name: Update Cache
-    apt:
+    ansible.builtin.apt:
       update_cache: yes
 
   - name: Upgrade all packages to the latest version
-    apt:
+    ansible.builtin.apt:
       upgrade: dist
       install_recommends: yes
 
   - name: Remove useless packages from the cache
-    apt:
+    ansible.builtin.apt:
       autoclean: yes
 
   - name: Remove dependencies that are no longer required
-    apt:
+    ansible.builtin.apt:
       autoremove: yes
 
   - name: Install http transport for apt
-    apt:
+    ansible.builtin.apt:
       name: apt-transport-https
       state: present
       update_cache: true
       install_recommends: yes
 
   - name: Install exFat fuse support
-    apt:
+    ansible.builtin.apt:
       name: exfat-fuse
       state: present
       update_cache: true
       install_recommends: yes
 
   - name: Install exFat utils
-    apt:
+    ansible.builtin.apt:
       name: exfat-utils
       state: present
       update_cache: true
       install_recommends: yes
  
   - name: Add Plex Key
-    apt_key:
+    ansible.builtin.apt_key:
       url: https://downloads.plex.tv/plex-keys/PlexSign.key
       state: present
 
   - name: Add Plex repo
-    apt_repository:
+    ansible.builtin.apt_repository:
       repo: deb https://downloads.plex.tv/repo/deb public main
       state: present
       filename: plexmediaserver
 
   - name: Update Cache
-    apt:
+    ansible.builtin.apt:
       update-cache: yes
 
   - name: Install Plex Media Server
-    apt:
+    ansible.builtin.apt:
       name: plexmediaserver
       state: present
       update_cache: true
       install_recommends: yes
+      
+  - name: Create media mount directory
+    file:
+      path: /media/mediaplus
+      state: directory
+      
+  - name: Mount media drive
+    ansible.posix.mount:
+      path: /media/mediaplus
+      src: LABEL=mediaplus
+      fstype: exfat
+      opts: defaults
+      state: mounted
 
 ##need to add a dir /media/mediaplus for the external exfat drive
 ##use lsusb and lsblk to find out where the drive is being seen
