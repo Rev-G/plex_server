@@ -76,6 +76,8 @@
       opts: defaults
       state: mounted
 
+##NOTE: this is been added to the ansible steps above.
+##.     However still need to varify it on a new install
 ##need to add a dir /media/mediaplus for the external exfat drive
 ##use lsusb and lsblk to find out where the drive is being seen
 ##mount it with
