@@ -1,2 +1,5 @@
 ansible_connection: ssh
 ansible_port: 22
+ansible_become: true
+ansible_user: "{{ lookup('ansible.builtin.env','MEDIAUSER') }}"
+ansible_password: "{{ lookup('ansible.builtin.env','MEDIAPASS') }}"

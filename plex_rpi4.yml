@@ -1,6 +1,5 @@
 - name: Plex Raspberry Pi
   hosts: plex
-  become: true
   
   tasks:
   - name: Update Cache
