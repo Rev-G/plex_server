@@ -6,11 +6,29 @@ https://www.raspberrypi.org/downloads/raspberry-pi-os/
 
 Raspberry Pi OS (64-bit) Lite
 
-1. pre-req
-    1. OS setup with ssh enabled
-1. add ssh user environment var `export MEDIAUSER=youruser`
-1. add ssh password environment var `export MEDIAPASS=yourpassword`
-1. add the pi server to the "hosts" file
-1. run `ansible-navigator run plex_rpi4.yml -i hosts --penv MEDIAUSER MEDIAPASS`
+## Pre-req
+
+Advanced OS settings menu
+
+![advanced os menu](doc/images/pi_advanced.png)
+
+Set SSH to Enabled and set user and password
+
+![advanced os settings](doc/images/pi_advanced_options.png)
+
+Add ssh environment vars
+
+```bash
+export MEDIAUSER=youruser
+export MEDIAPASS=yourpassword
+```
+
+## Run
+
+*Don't forget to add your server to the inventory file*
+
+`ansible-navigator run plex_rpi4.yml -i hosts --penv MEDIAUSER MEDIAPASS`
+
+## Sources of help
 
 https://pimylifeup.com/raspberry-pi-plex-server/
