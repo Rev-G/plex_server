@@ -35,6 +35,10 @@ export MEDIAPASS=yourpassword
 
 `ansible-navigator run plex_update.yml -i hosts --penv MEDIAUSER MEDIAPASS`
 
+### Update with custom ee
+
+`ansible-navigator run plex_update.yml -i hosts --penv MEDIAUSER MEDIAPASS --execution-environment-image ansible-execution-env`
+
 ## Sources of help
 
 https://pimylifeup.com/raspberry-pi-plex-server/
