@@ -1,4 +1,4 @@
-- name: Plex Raspberry Pi
+- name: Plex Raspberry Pi Install
   hosts: plex
   
   tasks:
