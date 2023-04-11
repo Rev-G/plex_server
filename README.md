@@ -27,7 +27,13 @@ export MEDIAPASS=yourpassword
 
 *Don't forget to add your server to the inventory file*
 
+### Install
+
 `ansible-navigator run plex_rpi4.yml -i hosts --penv MEDIAUSER MEDIAPASS`
+
+### Update
+
+`ansible-navigator run plex_update.yml -i hosts --penv MEDIAUSER MEDIAPASS`
 
 ## Sources of help
 
