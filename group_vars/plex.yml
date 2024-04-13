@@ -3,3 +3,4 @@ ansible_port: 22
 ansible_become: true
 ansible_user: "{{ lookup('ansible.builtin.env','MEDIAUSER') }}"
 ansible_password: "{{ lookup('ansible.builtin.env','MEDIAPASS') }}"
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
