@@ -35,7 +35,7 @@
 
   - name: Install exFat utils
     ansible.builtin.apt:
-      name: exfat-utils
+      name: exfatprogs
       state: present
       update_cache: true
       install_recommends: yes
