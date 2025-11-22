@@ -1,8 +1,14 @@
+### Ansible ###
+.ansible/
+
+### virtualenv ###
+.venv/
+
 ### inspec ###
 *.lock
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode/
 
 # User-specific files
 *.suo

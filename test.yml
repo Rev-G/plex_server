@@ -3,5 +3,6 @@
   become: true
 
   tasks:
-  - debug:
-      msg: Running on {{ ansible_hostname }}
+    - name: Display Hostname
+      ansible.builtin.debug:
+        msg: Running on {{ ansible_hostname }}

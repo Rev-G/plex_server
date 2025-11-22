@@ -1,87 +1,88 @@
 - name: Plex Raspberry Pi Install
   hosts: plex
-  
+
   tasks:
-  - name: Update Cache
-    ansible.builtin.apt:
-      update_cache: yes
+    - name: Update Cache
+      ansible.builtin.apt:
+        update_cache: true
 
-  - name: Upgrade all packages to the latest version
-    ansible.builtin.apt:
-      upgrade: dist
-      install_recommends: yes
+    - name: Upgrade all packages to the latest version
+      ansible.builtin.apt:
+        upgrade: dist
+        install_recommends: true
 
-  - name: Remove useless packages from the cache
-    ansible.builtin.apt:
-      autoclean: yes
+    - name: Remove useless packages from the cache
+      ansible.builtin.apt:
+        autoclean: true
 
-  - name: Remove dependencies that are no longer required
-    ansible.builtin.apt:
-      autoremove: yes
+    - name: Remove dependencies that are no longer required
+      ansible.builtin.apt:
+        autoremove: true
 
-  - name: Install http transport for apt
-    ansible.builtin.apt:
-      name: apt-transport-https
-      state: present
-      update_cache: true
-      install_recommends: yes
+    - name: Install http transport for apt
+      ansible.builtin.apt:
+        name: apt-transport-https
+        state: present
+        update_cache: true
+        install_recommends: true
 
-  - name: Install exFat fuse support
-    ansible.builtin.apt:
-      name: exfat-fuse
-      state: present
-      update_cache: true
-      install_recommends: yes
+    - name: Install exFat fuse support
+      ansible.builtin.apt:
+        name: exfat-fuse
+        state: present
+        update_cache: true
+        install_recommends: true
 
-  - name: Install exFat utils
-    ansible.builtin.apt:
-      name: exfatprogs
-      state: present
-      update_cache: true
-      install_recommends: yes
- 
-  - name: Add Plex Key
-    ansible.builtin.apt_key:
-      url: https://downloads.plex.tv/plex-keys/PlexSign.key
-      state: present
+    - name: Install exFat utils
+      ansible.builtin.apt:
+        name: exfatprogs
+        state: present
+        update_cache: true
+        install_recommends: true
 
-  - name: Add Plex repo
-    ansible.builtin.apt_repository:
-      repo: deb https://downloads.plex.tv/repo/deb public main
-      state: present
-      filename: plexmediaserver
+    - name: Add Plex Key
+      ansible.builtin.apt_key:
+        url: https://downloads.plex.tv/plex-keys/PlexSign.key
+        state: present
 
-  - name: Update Cache
-    ansible.builtin.apt:
-      update-cache: yes
+    - name: Add Plex repo
+      ansible.builtin.apt_repository:
+        repo: deb https://downloads.plex.tv/repo/deb public main
+        state: present
+        filename: plexmediaserver
 
-  - name: Install Plex Media Server
-    ansible.builtin.apt:
-      name: plexmediaserver
-      state: present
-      update_cache: true
-      install_recommends: yes
-      
-  - name: Create media mount directory
-    ansible.builtin.file:
-      path: /media/mediaplus
-      state: directory
-      
-  - name: Mount media drive
-    ansible.posix.mount:
-      path: /media/mediaplus
-      src: LABEL=mediaplus
-      fstype: exfat
-      opts: defaults
-      state: mounted
+    - name: Update Cache
+      ansible.builtin.apt:
+        update-cache: true
 
-##NOTE: this is been added to the ansible steps above.
-##.     However still need to varify it on a new install
-##need to add a dir /media/mediaplus for the external exfat drive
-##use lsusb and lsblk to find out where the drive is being seen
-##mount it with
-#sudo mount -t exfat /dev/sda2 /media/mediaplus
-##verify the mount
-#df -h 
-##
-#sudo umount /dev/sda2
+    - name: Install Plex Media Server
+      ansible.builtin.apt:
+        name: plexmediaserver
+        state: present
+        update_cache: true
+        install_recommends: true
+
+    - name: Create media mount directory
+      ansible.builtin.file:
+        path: /media/mediaplus
+        state: directory
+
+    - name: Mount media drive
+      ansible.posix.mount:
+        path: /media/mediaplus
+        src: LABEL=mediaplus
+        fstype: exfat
+        opts: defaults
+        state: mounted
+
+  ## NOTE: this has been added to the ansible steps above.
+  ## However still need to verify it on a new install
+  ###
+  ### need to add a dir /media/mediaplus for the external exfat drive
+  ### use lsusb and lsblk to find out where the drive is being seen
+  ### mount it with
+  # sudo mount -t exfat /dev/sda2 /media/mediaplus
+  ### verify the mount
+  # df -h 
+  ###
+  # sudo umount /dev/sda2
