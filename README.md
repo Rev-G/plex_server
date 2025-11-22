@@ -31,6 +31,10 @@ export MEDIAPASS=yourpassword
 
 `ansible-navigator run plex_rpi4.yml -i hosts --penv MEDIAUSER MEDIAPASS`
 
+### Using community ee
+
+`ansible-navigator run plex_rpi4.yml -i hosts --execution-environment-image ghcr.io/ansible-community/community-ee-base:latest --pull-policy missing -m stdout --penv MEDIAUSER MEDIAPASS`
+
 ### Update
 
 `ansible-navigator run plex_update.yml -i hosts --penv MEDIAUSER MEDIAPASS`
@@ -39,6 +43,27 @@ export MEDIAPASS=yourpassword
 
 `ansible-navigator run plex_update.yml -i hosts --penv MEDIAUSER MEDIAPASS --execution-environment-image ansible-execution-env`
 
+
 ## Sources of help
 
 https://pimylifeup.com/raspberry-pi-plex-server/
+
+## Drive help
+
+NOTE: this is in the ansible playbook. However keeping here for reference if needed later.
+
+Use lsusb and lsblk to find out where the drive is being seen
+  
+### Mount drive
+
+`sudo mount -t exfat /dev/sda2 /media/mediaplus`
+
+### Verify the mount
+
+`df -h`
+
+### Unmount drive
+
+assuming drive is located in /dev/sda2
+
+`sudo umount /dev/sda2`

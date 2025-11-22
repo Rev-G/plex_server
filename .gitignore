@@ -1,6 +1,11 @@
 ### Ansible ###
 .ansible/
 
+### Ansible Navigator ###
+.ansible-navigator/
+ansible-navigator.log
+*-artifact-*.json
+
 ### virtualenv ###
 .venv/
 

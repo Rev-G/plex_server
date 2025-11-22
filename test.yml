@@ -5,4 +5,4 @@
   tasks:
     - name: Display Hostname
       ansible.builtin.debug:
-        msg: Running on {{ ansible_hostname }}
+        msg: Running on {{ ansible_facts["hostname"] }}
