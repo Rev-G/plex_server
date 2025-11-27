@@ -1,5 +1,5 @@
-- name: Plex Raspberry Pi Update
-  hosts: plex
+- name: Raspberry Pi Update
+  hosts: all
   gather_facts: false
 
   tasks:

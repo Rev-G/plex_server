@@ -1,0 +1,6 @@
+ansible_connection: ssh
+ansible_port: 22
+ansible_become: true
+ansible_user: "{{ lookup('ansible.builtin.env','K8SUSER') }}"
+ansible_password: "{{ lookup('ansible.builtin.env','K8SPASS') }}"
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'

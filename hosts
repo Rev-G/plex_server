@@ -1,3 +1,8 @@
 plex:
   hosts:
     mediaserver:
+k8s:
+  hosts:
+    kube1:
+    kube2:
+    kube3:
