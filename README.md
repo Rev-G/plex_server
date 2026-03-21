@@ -1,4 +1,6 @@
-# Plex Raspberry Pi
+# Plex and K8S Raspberry Pi 
+
+## Base OS used is Raspbian
 
 Using Ansible to get a Raspberry Pi 4 running Raspbian OS
 
@@ -18,12 +20,21 @@ Set SSH to Enabled and set user and password
 
 Add ssh environment vars
 
+For Plex
+
 ```bash
 export MEDIAUSER=youruser
 export MEDIAPASS=yourpassword
 ```
 
-## Run
+For K8S
+
+```bash
+export K8SUSER=youruser
+export K8SPASS=yourpassword
+```
+
+## Plex
 
 *Don't forget to add your server to the inventory file*
 
@@ -50,7 +61,7 @@ https://pimylifeup.com/raspberry-pi-plex-server/
 
 https://support.plex.tv/articles/235974187-enable-repository-updating-for-supported-linux-server-distributions/
 
-## Drive help
+### Drive help
 
 NOTE: this is in the ansible playbook. However keeping here for reference if needed later.
 
@@ -69,3 +80,11 @@ Use lsusb and lsblk to find out where the drive is being seen
 assuming drive is located in /dev/sda2
 
 `sudo umount /dev/sda2`
+
+## K8S
+
+### Update
+
+```bash
+ansible-navigator run pi_update.yml -i hosts --limit k8s --execution-environment-image ghcr.io/ansible-community/community-ee-base:latest --pull-policy missing -m stdout --penv K8SUSER K8SPASS
+```
