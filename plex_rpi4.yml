@@ -30,13 +30,18 @@
         update_cache: true
         install_recommends: true
 
-    # - name: Add Plex Key
-    #   ansible.builtin.apt_key:
-    #     url: https://downloads.plex.tv/plex-keys/PlexSign.v2.key
-    #     keyring: /etc/apt/keyrings/plexmediaserver.v2.gpg
+    # - name: Add Plex repo
+    #   ansible.builtin.deb822_repository:
+    #     name: plex
+    #     uris: https://repo.plex.tv/deb/
+    #     suites: public
+    #     components: main
+    #     signed_by: https://downloads.plex.tv/plex-keys/PlexSign.v2.key
     #     state: present
+    #     enabled: yes
 
-    ## The below 2 tasks need to be reworked for the new v2 key method and repository location
+    ## The below 2 tasks need to be reworked for the new v2 key method and repository location.  I believe the above commented 
+    ## "Add Plex repo" task should work. But have not test it yet
     ## https://support.plex.tv/articles/235974187-enable-repository-updating-for-supported-linux-server-distributions/
     # - name: Download Plex Key
     #   ansible.builtin.get_url:
