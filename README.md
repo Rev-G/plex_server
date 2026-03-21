@@ -48,6 +48,8 @@ export MEDIAPASS=yourpassword
 
 https://pimylifeup.com/raspberry-pi-plex-server/
 
+https://support.plex.tv/articles/235974187-enable-repository-updating-for-supported-linux-server-distributions/
+
 ## Drive help
 
 NOTE: this is in the ansible playbook. However keeping here for reference if needed later.

@@ -19,43 +19,36 @@
       ansible.builtin.apt:
         autoremove: true
 
-    - name: Install http transport for apt
+    - name: Install required packages
       ansible.builtin.apt:
-        name: apt-transport-https
-        state: present
-        update_cache: true
-        install_recommends: true
-
-    - name: Install exFat fuse support
-      ansible.builtin.apt:
-        name: exfat-fuse
-        state: present
-        update_cache: true
-        install_recommends: true
-
-    - name: Install exFat utils
-      ansible.builtin.apt:
-        name: exfatprogs
+        name: 
+        - apt-transport-https
+        - gnupg2
+        - exfat-fuse
+        - exfatprogs
         state: present
         update_cache: true
         install_recommends: true
 
     # - name: Add Plex Key
     #   ansible.builtin.apt_key:
-    #     url: https://downloads.plex.tv/plex-keys/PlexSign.key
+    #     url: https://downloads.plex.tv/plex-keys/PlexSign.v2.key
+    #     keyring: /etc/apt/keyrings/plexmediaserver.v2.gpg
     #     state: present
 
-    - name: Download Plex Key
-      ansible.builtin.get_url:
-        url: https://downloads.plex.tv/plex-keys/PlexSign.key
-        dest: /etc/apt/trusted.gpg.d/plexsign.asc
-        mode: '0644'
+    ## The below 2 tasks need to be reworked for the new v2 key method and repository location
+    ## https://support.plex.tv/articles/235974187-enable-repository-updating-for-supported-linux-server-distributions/
+    # - name: Download Plex Key
+    #   ansible.builtin.get_url:
+    #     url: https://downloads.plex.tv/plex-keys/PlexSign.key
+    #     dest: /etc/apt/trusted.gpg.d/plexsign.asc
+    #     mode: '0644'
 
-    - name: Add Plex repo
-      ansible.builtin.apt_repository:
-        repo: deb https://downloads.plex.tv/repo/deb public main
-        state: present
-        filename: plexmediaserver
+    # - name: Add Plex repo
+    #   ansible.builtin.apt_repository:
+    #     repo: deb https://downloads.plex.tv/repo/deb public main
+    #     state: present
+    #     filename: plexmediaserver
 
     - name: Update Cache
       ansible.builtin.apt:
