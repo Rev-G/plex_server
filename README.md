@@ -48,11 +48,15 @@ export K8SPASS=yourpassword
 
 ### Update
 
-`ansible-navigator run plex_update.yml -i hosts --penv MEDIAUSER MEDIAPASS`
+`ansible-navigator run pi_update.yml -i hosts --penv MEDIAUSER MEDIAPASS`
+
+### Update with community ee
+
+`ansible-navigator run pi_update.yml -i hosts --execution-environment-image ghcr.io/ansible-community/community-ee-base:latest --pull-policy missing -m stdout --penv MEDIAUSER MEDIAPASS K8SUSER K8SPASS`
 
 ### Update with custom ee
 
-`ansible-navigator run plex_update.yml -i hosts --penv MEDIAUSER MEDIAPASS --execution-environment-image ansible-execution-env`
+`ansible-navigator run pi_update.yml -i hosts --penv MEDIAUSER MEDIAPASS --execution-environment-image ansible-execution-env`
 
 
 ## Sources of help
